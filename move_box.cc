@@ -4,7 +4,6 @@
 #include <string.h>
 using namespace std;
 
-
 class Board {
 public:
     int width;
@@ -22,7 +21,6 @@ private:
         }
         return;
     }
-
 
     bool clearMatches(){
         int last_type = 0;
@@ -122,7 +120,6 @@ S,S,P,L,R,S,S,
 S,S,L,G,P,S,S,
 S,S,P,S,G,S,S
         };
-         
         
        /* int temp [] = {
             0,0,1,1,0,0,0,
@@ -147,12 +144,9 @@ S,S,P,S,G,S,S
     }
 
     void copyBoard( Board & b){
-        /*int n = width * height;
-        for(int i = 0 ; i < n ; i++){
-            board[i] = b.board[i];
-        }*/
         memcpy(board, b.board, sizeof(int)*width*height);
     }
+	
     void print(){
         for(int i = 0 ; i < width; i++){
             printf("-");
@@ -165,6 +159,7 @@ S,S,P,S,G,S,S
             printf("\n");
         }
     }
+	
     void simulateMove(int r1, int c1, int cell){
         int i1 = r1*width + c1;
         
@@ -178,17 +173,11 @@ S,S,P,S,G,S,S
         board[i1] = board[cell];
         board[cell] = temp;
         
-        //printf("After moved:\n");
         do {
-          //  printf("After cleared matches:\n");
-            //print();
             gravitate();
-            //printf("After gravitate matches:\n");
-            //print();
-        } while (clearMatches());
-        //printf("Finished simulate.\n");
-        
+        } while (clearMatches());    
     }
+	
     bool hasBoxes(){
         int n =  width * height;
         for(int i  = 0 ; i < n ; i++){
@@ -220,24 +209,31 @@ S,S,P,S,G,S,S
             return false;
         }
     }
+	
     int getNorth(int r, int c){
         return (r+1)*width + c;
     }
+	
     bool hasSouth(int r){
         return r > 0;
     }
+	
     int getSouth(int r, int c){
         return (r - 1) * width + c;
     }
+	
     bool hasEast(int c){
         return c != (width - 1);
     }
+	
     int getEast(int r, int c){
         return r*width + c + 1;
     }
+	
     bool hasWest(int c){
         return c > 0;
     }
+	
     int getWest(int r, int c){
         return r*width + c - 1;
     }
