@@ -8,11 +8,11 @@ using namespace std;
 class Board {
 public:
     int width;
-	int height;
+    int height;
     
 private:
     
-	int * board;
+    int * board;
     bool * match_mask;
 
     void clearMasks(){
@@ -24,7 +24,7 @@ private:
     }
 
 
-	bool clearMatches(){
+    bool clearMatches(){
         int last_type = 0;
         int box_type;
         int consec_count = 0;
@@ -87,7 +87,7 @@ private:
         }
 
         return found_match;
-	}
+    }
     
     //make the boxes fall down
     void gravitate(){
@@ -113,9 +113,9 @@ public:
         S,G,V,L,B,P,R
     }; 
    #define MAX_MOVES 4
-	Board():width(7), height(5) {
+    Board():width(7), height(5) {
         
-	int temp [] = {
+    int temp [] = {
 P,S,P,R,G,S,S,
 S,S,R,L,P,S,S,
 S,S,P,L,R,S,S,
@@ -133,18 +133,18 @@ S,S,P,S,G,S,S
             0,0,0,2,0,0,0,
             0,0,0,2,0,0,0
           };  
-		*/
+        */
         
         board = new int[width * height];
         memcpy(board, &temp, sizeof(int)*width*height);
         
         match_mask = new bool[width * height];
-	}
+    }
     
     ~Board(){
-		delete [] board;
+        delete [] board;
         delete [] match_mask;
-	}
+    }
 
     void copyBoard( Board & b){
         /*int n = width * height;
